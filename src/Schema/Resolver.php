@@ -21,7 +21,7 @@ class Resolver
     public function __construct(Loader $loader, $schema, $basePath)
     {
         $this->loader = $loader;
-        $this->cache = new cache($schema);
+        $this->cache = new Cache($schema);
         $this->basePath = $basePath;
     }
 

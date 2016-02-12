@@ -269,7 +269,14 @@ class ResolverTest extends \JsonWorks\Tests\Base
             }
         }';
 
-        $this->assertTrue($this->validate($schema, $data), 'Testing success');
+        $data = $this->fromJson($data);
+
+        foreach ($data as $key => $value) {
+            $msg = sprintf('Testing success with data property: %s', $key);
+            $prop = (object) [$key => $value];
+
+            $this->assertTrue($this->validate($schema, $prop), $msg);
+        }
     }
 
     public function testAnotherCompound2()
@@ -313,12 +320,9 @@ class ResolverTest extends \JsonWorks\Tests\Base
 
         foreach ($data as $key => $value) {
             $msg = sprintf('Testing success with data property: %s', $key);
-
             $prop = (object) [$key => $value];
 
-            $this->assertTrue($this->validate($schema, $prop), 'Testing success, full data');
+            $this->assertTrue($this->validate($schema, $prop), $msg);
         }
-
-        $this->assertTrue($this->validate($schema, $data), 'Testing success, full data');
     }
 }
