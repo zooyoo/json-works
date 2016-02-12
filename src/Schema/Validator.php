@@ -31,7 +31,7 @@ class Validator
         $this->resolver = new Resolver($this->loader, $this->schema, $basePath);
     }
 
-    public function check($data, $schema)
+    public function check($data)
     {
         $data = $this->getData($data);
         $manager = new Manager($this->resolver, $this->stopOnError);
